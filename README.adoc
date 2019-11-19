@@ -5,6 +5,8 @@ v0.1.0, 2019-11-18
 
 == Bottom Line
 
+WARNING: This demo is pretty rough around the edges, I do plan to go back through and clean this up sometime in the future.
+
 This repo is meant to be a quick example of how https://docs.docker.com/[docker] and https://docs.docker.com/compose/[docker-compose] can be used to quickly prototype things for red team operations.
 
 == Background
