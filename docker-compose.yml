@@ -21,7 +21,18 @@ services:
       - ./files/empire/profile.rc:/opt/Empire/profile.rc:ro
       - ./scratch:/scratch:rw
       - empire:/data:rw
+  msf:
+    image: metasploitframework/metasploit-framework:latest
+    tty: true
+    stdin_open: true
+    environment:
+      - MSF_UID=0
+      - MSF_GID=0
+    volumes:
+      - ./scratch:/scratch:rw
+      - msf:/root/.msf4:rw
 
 volumes:
   empire: {}
+  msf: {}
 ...
