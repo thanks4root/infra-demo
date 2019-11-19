@@ -9,4 +9,18 @@ services:
       - ./files/nginx/www:/usr/share/nginx/html:ro
     ports:
       - 0.0.0.0:80:80/tcp
+  empire:
+    image: empireproject/empire:dev
+    tty: true
+    stdin_open: true
+    command:
+      - bash
+      - /usr/local/bin/entrypoint.sh
+    volumes:
+      - ./files/empire/entrypoint.sh:/usr/local/bin/entrypoint.sh:ro
+      - ./scratch:/scratch:rw
+      - empire:/data:rw
+
+volumes:
+  empire: {}
 ...
