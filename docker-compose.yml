@@ -31,6 +31,7 @@ services:
     volumes:
       - ./scratch:/scratch:rw
       - msf:/root/.msf4:rw
+      - ./files/msf/msfconsole.rc:/usr/src/metasploit-framework/docker/msfconsole.rc:ro
 
 volumes:
   empire: {}
