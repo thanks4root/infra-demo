@@ -1,0 +1,39 @@
+---
+version: '3.7'
+
+services:
+  proxy:
+    image: nginx:1.17
+    volumes:
+      - ./files/nginx/config:/etc/nginx/conf.d:ro
+      - ./files/nginx/www:/usr/share/nginx/html:ro
+    ports:
+      - 0.0.0.0:80:80/tcp
+  empire:
+    image: empireproject/empire:dev
+    tty: true
+    stdin_open: true
+    command:
+      - bash
+      - /usr/local/bin/entrypoint.sh
+    volumes:
+      - ./files/empire/entrypoint.sh:/usr/local/bin/entrypoint.sh:ro
+      - ./files/empire/profile.rc:/opt/Empire/profile.rc:ro
+      - ./scratch:/scratch:rw
+      - empire:/data:rw
+  msf:
+    image: metasploitframework/metasploit-framework:latest
+    tty: true
+    stdin_open: true
+    environment:
+      - MSF_UID=0
+      - MSF_GID=0
+    volumes:
+      - ./scratch:/scratch:rw
+      - msf:/root/.msf4:rw
+      - ./files/msf/msfconsole.rc:/usr/src/metasploit-framework/docker/msfconsole.rc:ro
+
+volumes:
+  empire: {}
+  msf: {}
+...
