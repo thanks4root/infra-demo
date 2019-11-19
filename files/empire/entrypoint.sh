@@ -12,6 +12,7 @@ if [ ! -f '/data/.bootstrap' ] ; then
   mkdir /data/downloads
   ln -s /data/downloads
   touch /data/.bootstrap
+  args='--resource /opt/Empire/profile.rc'
 fi
 
-exec -a empire python ./empire
+exec -a empire python ./empire ${args}
